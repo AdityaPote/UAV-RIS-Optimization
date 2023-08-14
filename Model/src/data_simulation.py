@@ -7,6 +7,10 @@ def simulate_ris_data(num_elements, save_path):
     grid_size = 11
     num_obstacles = 50
     obstacles = [(np.random.randint(0, grid_size), np.random.randint(0, grid_size)) for _ in range(num_obstacles)]
+    
+    # Generate 3D positions for RIS elements
+    ris_positions = np.random.random((num_elements, 3)) * grid_size
+    
     elements = np.random.normal(0.5, 0.1, (num_elements, 4))
     
     # Create the data directory if it doesn't exist
@@ -14,7 +18,7 @@ def simulate_ris_data(num_elements, save_path):
         os.makedirs(os.path.dirname(save_path))
     
     # Save the data
-    np.savez(save_path, obstacles=obstacles, elements=elements)
+    np.savez(save_path, obstacles=obstacles, ris_positions=ris_positions, elements=elements)
 
 # Example usage
 if __name__ == "__main__":
